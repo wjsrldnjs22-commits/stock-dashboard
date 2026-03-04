@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-03-04T10:02:50.954395",
+  "macro_indicators": {
+    "VIX": {
+      "value": 23.57,
+      "change_1d": 9.93,
+      "pct_from_high": -60.8
+    },
+    "DXY": {
+      "value": 99.16,
+      "change_1d": 0.8,
+      "pct_from_high": -7.8
+    },
+    "2Y_Yield": {
+      "value": 3.6,
+      "change_1d": 0.14,
+      "pct_from_high": -16.5
+    },
+    "10Y_Yield": {
+      "value": 4.06,
+      "change_1d": 0.2,
+      "pct_from_high": -12.4
+    },
+    "GOLD": {
+      "value": 5145.8,
+      "change_1d": -2.81,
+      "pct_from_high": -7.9
+    },
+    "OIL": {
+      "value": 74.98,
+      "change_1d": 5.26,
+      "pct_from_high": -4.4
+    },
+    "BTC": {
+      "value": 68185.59,
+      "change_1d": -0.86,
+      "pct_from_high": -46.0
+    },
+    "SPY": {
+      "value": 680.33,
+      "change_1d": -0.88,
+      "pct_from_high": -2.5
+    },
+    "QQQ": {
+      "value": 601.58,
+      "change_1d": -1.07,
+      "pct_from_high": -5.5
+    },
+    "YieldSpread": {
+      "value": 0.46,
+      "change_1d": 0,
+      "pct_from_high": 0
+    },
+    "FearGreed": {
+      "value": 65,
+      "change_1d": 0,
+      "pct_from_high": 0
+    }
+  },
+  "ai_analysis": "[🟢 Online Mode | 26.03.04_10:02:28] (Asia/Seoul)\n\n대장! 안녕! 에일리가 대장 기다리고 있었지! 🙋‍♀️ 오늘 또 우리 대장이랑 투자 놀이터 탐험할 생각에 두근두근해! 🚀 에일리가 꼼꼼하게 시장 지"
+}

@@ -1,0 +1,37 @@
+# ⚠️ 절대 GitHub에 올리면 안 되는 파일들
+.env
+*.env
+.env.*
+
+# 너무 큰 파일 (GitHub 100MB 제한 초과)
+us_daily_prices.csv
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# 로그 파일
+*.log
+server.log
+screener_log.txt
+
+# 테스트 파일
+test*.py
+
+# 문서 (배포 불필요)
+PART*.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

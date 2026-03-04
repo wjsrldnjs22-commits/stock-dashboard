@@ -1,0 +1,30 @@
+{
+  "volatility": 18.32,
+  "high_correlations": [],
+  "matrix": {
+    "AAPL": {
+      "AAPL": 1.0,
+      "GOOGL": 0.32,
+      "MSFT": 0.09,
+      "NVDA": 0.19
+    },
+    "GOOGL": {
+      "AAPL": 0.32,
+      "GOOGL": 1.0,
+      "MSFT": 0.05,
+      "NVDA": 0.22
+    },
+    "MSFT": {
+      "AAPL": 0.09,
+      "GOOGL": 0.05,
+      "MSFT": 1.0,
+      "NVDA": 0.33
+    },
+    "NVDA": {
+      "AAPL": 0.19,
+      "GOOGL": 0.22,
+      "MSFT": 0.33,
+      "NVDA": 1.0
+    }
+  }
+}

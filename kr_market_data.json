@@ -1,0 +1,386 @@
+{
+  "updated": "2026-03-04T20:32:10.651027",
+  "indices": {
+    "KOSPI": {
+      "value": 5093.54,
+      "change": -12.06,
+      "prev_close": 5791.91
+    },
+    "KOSDAQ": {
+      "value": 978.44,
+      "change": -14.0,
+      "prev_close": 1137.7
+    },
+    "KOSPI 200": {
+      "value": 756.79,
+      "change": -11.94,
+      "prev_close": 859.4
+    }
+  },
+  "stocks": [
+    {
+      "ticker": "005930",
+      "name": "삼성전자",
+      "price": 172200.0,
+      "change": -11.74,
+      "volume": 92419138,
+      "market_cap": 15914575.6
+    },
+    {
+      "ticker": "000660",
+      "name": "SK하이닉스",
+      "price": 849000.0,
+      "change": -9.58,
+      "volume": 9707166,
+      "market_cap": 8241383.9
+    },
+    {
+      "ticker": "373220",
+      "name": "LG에너지솔루션",
+      "price": 347500.0,
+      "change": -11.58,
+      "volume": 826847,
+      "market_cap": 287329.3
+    },
+    {
+      "ticker": "207940",
+      "name": "삼성바이오로직스",
+      "price": 1516000.0,
+      "change": -9.82,
+      "volume": 83414,
+      "market_cap": 126455.6
+    },
+    {
+      "ticker": "005380",
+      "name": "현대자동차",
+      "price": 501000.0,
+      "change": -15.8,
+      "volume": 4963891,
+      "market_cap": 2486909.4
+    },
+    {
+      "ticker": "000270",
+      "name": "기아",
+      "price": 156700.0,
+      "change": -14.04,
+      "volume": 3119248,
+      "market_cap": 488786.2
+    },
+    {
+      "ticker": "006400",
+      "name": "삼성SDI",
+      "price": 351000.0,
+      "change": -13.97,
+      "volume": 1952656,
+      "market_cap": 685382.3
+    },
+    {
+      "ticker": "035420",
+      "name": "NAVER",
+      "price": 208000.0,
+      "change": -11.86,
+      "volume": 2051989,
+      "market_cap": 426813.7
+    },
+    {
+      "ticker": "035720",
+      "name": "카카오",
+      "price": 47050.0,
+      "change": -16.28,
+      "volume": 6214956,
+      "market_cap": 292413.7
+    },
+    {
+      "ticker": "051910",
+      "name": "LG화학",
+      "price": 307000.0,
+      "change": -14.96,
+      "volume": 720462,
+      "market_cap": 221181.8
+    },
+    {
+      "ticker": "028260",
+      "name": "삼성물산",
+      "price": 272000.0,
+      "change": -14.2,
+      "volume": 1035332,
+      "market_cap": 281610.3
+    },
+    {
+      "ticker": "105560",
+      "name": "KB금융",
+      "price": 137700.0,
+      "change": -10.29,
+      "volume": 2845836,
+      "market_cap": 391871.6
+    },
+    {
+      "ticker": "055550",
+      "name": "신한지주",
+      "price": 88800.0,
+      "change": -8.17,
+      "volume": 3419674,
+      "market_cap": 303667.1
+    },
+    {
+      "ticker": "066570",
+      "name": "LG전자",
+      "price": 109000.0,
+      "change": -14.58,
+      "volume": 2558128,
+      "market_cap": 278836.0
+    },
+    {
+      "ticker": "003670",
+      "name": "포스코퓨처엠",
+      "price": 185200.0,
+      "change": -18.23,
+      "volume": 781894,
+      "market_cap": 144806.8
+    },
+    {
+      "ticker": "068270",
+      "name": "셀트리온",
+      "price": 197400.0,
+      "change": -12.27,
+      "volume": 1535839,
+      "market_cap": 303174.6
+    },
+    {
+      "ticker": "096770",
+      "name": "SK이노베이션",
+      "price": 109000.0,
+      "change": -16.73,
+      "volume": 2479816,
+      "market_cap": 270299.9
+    },
+    {
+      "ticker": "034730",
+      "name": "SK",
+      "price": 330000.0,
+      "change": -13.04,
+      "volume": 491688,
+      "market_cap": 162257.0
+    },
+    {
+      "ticker": "012330",
+      "name": "현대모비스",
+      "price": 399000.0,
+      "change": -14.83,
+      "volume": 624561,
+      "market_cap": 249199.8
+    },
+    {
+      "ticker": "086790",
+      "name": "하나금융지주",
+      "price": 105500.0,
+      "change": -12.16,
+      "volume": 1522733,
+      "market_cap": 160648.3
+    }
+  ],
+  "sectors": {
+    "반도체": {
+      "avg_change": -10.66,
+      "stocks": [
+        {
+          "ticker": "005930",
+          "name": "삼성전자",
+          "price": 172200.0,
+          "change": -11.74,
+          "volume": 92419138,
+          "market_cap": 15914575.6
+        },
+        {
+          "ticker": "000660",
+          "name": "SK하이닉스",
+          "price": 849000.0,
+          "change": -9.58,
+          "volume": 9707166,
+          "market_cap": 8241383.9
+        }
+      ],
+      "count": 2
+    },
+    "배터리": {
+      "avg_change": -15.09,
+      "stocks": [
+        {
+          "ticker": "373220",
+          "name": "LG에너지솔루션",
+          "price": 347500.0,
+          "change": -11.58,
+          "volume": 826847,
+          "market_cap": 287329.3
+        },
+        {
+          "ticker": "006400",
+          "name": "삼성SDI",
+          "price": 351000.0,
+          "change": -13.97,
+          "volume": 1952656,
+          "market_cap": 685382.3
+        },
+        {
+          "ticker": "051910",
+          "name": "LG화학",
+          "price": 307000.0,
+          "change": -14.96,
+          "volume": 720462,
+          "market_cap": 221181.8
+        },
+        {
+          "ticker": "003670",
+          "name": "포스코퓨처엠",
+          "price": 185200.0,
+          "change": -18.23,
+          "volume": 781894,
+          "market_cap": 144806.8
+        },
+        {
+          "ticker": "096770",
+          "name": "SK이노베이션",
+          "price": 109000.0,
+          "change": -16.73,
+          "volume": 2479816,
+          "market_cap": 270299.9
+        }
+      ],
+      "count": 5
+    },
+    "IT/플랫폼": {
+      "avg_change": -14.07,
+      "stocks": [
+        {
+          "ticker": "035420",
+          "name": "NAVER",
+          "price": 208000.0,
+          "change": -11.86,
+          "volume": 2051989,
+          "market_cap": 426813.7
+        },
+        {
+          "ticker": "035720",
+          "name": "카카오",
+          "price": 47050.0,
+          "change": -16.28,
+          "volume": 6214956,
+          "market_cap": 292413.7
+        }
+      ],
+      "count": 2
+    },
+    "자동차": {
+      "avg_change": -14.89,
+      "stocks": [
+        {
+          "ticker": "005380",
+          "name": "현대자동차",
+          "price": 501000.0,
+          "change": -15.8,
+          "volume": 4963891,
+          "market_cap": 2486909.4
+        },
+        {
+          "ticker": "000270",
+          "name": "기아",
+          "price": 156700.0,
+          "change": -14.04,
+          "volume": 3119248,
+          "market_cap": 488786.2
+        },
+        {
+          "ticker": "012330",
+          "name": "현대모비스",
+          "price": 399000.0,
+          "change": -14.83,
+          "volume": 624561,
+          "market_cap": 249199.8
+        }
+      ],
+      "count": 3
+    },
+    "바이오": {
+      "avg_change": -11.04,
+      "stocks": [
+        {
+          "ticker": "207940",
+          "name": "삼성바이오로직스",
+          "price": 1516000.0,
+          "change": -9.82,
+          "volume": 83414,
+          "market_cap": 126455.6
+        },
+        {
+          "ticker": "068270",
+          "name": "셀트리온",
+          "price": 197400.0,
+          "change": -12.27,
+          "volume": 1535839,
+          "market_cap": 303174.6
+        }
+      ],
+      "count": 2
+    },
+    "금융": {
+      "avg_change": -10.21,
+      "stocks": [
+        {
+          "ticker": "105560",
+          "name": "KB금융",
+          "price": 137700.0,
+          "change": -10.29,
+          "volume": 2845836,
+          "market_cap": 391871.6
+        },
+        {
+          "ticker": "055550",
+          "name": "신한지주",
+          "price": 88800.0,
+          "change": -8.17,
+          "volume": 3419674,
+          "market_cap": 303667.1
+        },
+        {
+          "ticker": "086790",
+          "name": "하나금융지주",
+          "price": 105500.0,
+          "change": -12.16,
+          "volume": 1522733,
+          "market_cap": 160648.3
+        }
+      ],
+      "count": 3
+    },
+    "전자/제조": {
+      "avg_change": -13.94,
+      "stocks": [
+        {
+          "ticker": "028260",
+          "name": "삼성물산",
+          "price": 272000.0,
+          "change": -14.2,
+          "volume": 1035332,
+          "market_cap": 281610.3
+        },
+        {
+          "ticker": "066570",
+          "name": "LG전자",
+          "price": 109000.0,
+          "change": -14.58,
+          "volume": 2558128,
+          "market_cap": 278836.0
+        },
+        {
+          "ticker": "034730",
+          "name": "SK",
+          "price": 330000.0,
+          "change": -13.04,
+          "volume": 491688,
+          "market_cap": 162257.0
+        }
+      ],
+      "count": 3
+    }
+  }
+}

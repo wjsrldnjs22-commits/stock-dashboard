@@ -1,0 +1,103 @@
+{
+  "updated": "2026-03-04T10:26:16.996657",
+  "events": [
+    {
+      "date": "2026-03-04",
+      "event": "Mortgage Market Index",
+      "event_en": "Mortgage Market Index",
+      "impact": "보통",
+      "description": "실제: - | 예상: -"
+    },
+    {
+      "date": "2026-03-04",
+      "event": "MBA 30-Yr Mortgage Rate",
+      "event_en": "MBA 30-Yr Mortgage Rate",
+      "impact": "보통",
+      "description": "실제: - | 예상: -"
+    },
+    {
+      "date": "2026-03-04",
+      "event": "MBA Purchase Index",
+      "event_en": "MBA Purchase Index",
+      "impact": "보통",
+      "description": "실제: - | 예상: -"
+    },
+    {
+      "date": "2026-03-04",
+      "event": "Mortgage Refinance Index",
+      "event_en": "Mortgage Refinance Index",
+      "impact": "보통",
+      "description": "실제: - | 예상: -"
+    },
+    {
+      "date": "2026-03-04",
+      "event": "ADP National Employment",
+      "event_en": "ADP National Employment",
+      "impact": "보통",
+      "description": "실제: - | 예상: -"
+    },
+    {
+      "date": "2026-03-04",
+      "event": "ISM N-Mfg Employment Idx",
+      "event_en": "ISM N-Mfg Employment Idx",
+      "impact": "보통",
+      "description": "실제: - | 예상: -"
+    },
+    {
+      "date": "2026-03-04",
+      "event": "🏗️ 구매관리자지수(PMI)",
+      "event_en": "ISM N-Mfg PMI",
+      "impact": "보통",
+      "description": "실제: - | 예상: -"
+    },
+    {
+      "date": "2026-03-04",
+      "event": "ISM N-Mfg Price Paid Idx",
+      "event_en": "ISM N-Mfg Price Paid Idx",
+      "impact": "보통",
+      "description": "실제: - | 예상: -"
+    },
+    {
+      "date": "2026-03-04",
+      "event": "ISM N-Mfg New Orders Idx",
+      "event_en": "ISM N-Mfg New Orders Idx",
+      "impact": "보통",
+      "description": "실제: - | 예상: -"
+    },
+    {
+      "date": "2026-03-04",
+      "event": "ISM N-Mfg Bus Act",
+      "event_en": "ISM N-Mfg Bus Act",
+      "impact": "보통",
+      "description": "실제: - | 예상: -"
+    }
+  ],
+  "news_feed": [
+    {
+      "title": "Dow Jones Futures: Stock Market Slashes Losses, Oil Pares Gains As Trump Says This",
+      "link": "https://finance.yahoo.com/m/c1add9ec-a86f-3839-becb-88c19fce4003/dow-jones-futures%3A-stock.html?.tsrc=rss",
+      "pubDate": "Wed, 04 Mar 2026 01:18:06 +0000"
+    },
+    {
+      "title": "2 Top Growth Stocks to Buy in the First Half of 2026",
+      "link": "https://www.fool.com/investing/2026/03/03/2-top-growth-stocks-to-buy-in-the-first-half-of-20/?.tsrc=rss",
+      "pubDate": "Wed, 04 Mar 2026 00:35:00 +0000"
+    },
+    {
+      "title": "Cisco Deepens AI And 6G Push With Secure Australia Factory",
+      "link": "https://finance.yahoo.com/news/cisco-deepens-ai-6g-push-002254216.html?.tsrc=rss",
+      "pubDate": "Wed, 04 Mar 2026 00:22:54 +0000"
+    },
+    {
+      "title": "C3.ai Shares Plunge. Should Investors Buy the Stock on the Dip?",
+      "link": "https://www.fool.com/investing/2026/03/03/c3ai-shares-plunge-investors-buy-stock-dip/?.tsrc=rss",
+      "pubDate": "Wed, 04 Mar 2026 00:10:00 +0000"
+    },
+    {
+      "title": "Why Micron (MU) Stock Is Falling Today",
+      "link": "https://finance.yahoo.com/news/why-micron-mu-stock-falling-000742276.html?.tsrc=rss",
+      "pubDate": "Wed, 04 Mar 2026 00:07:42 +0000"
+    }
+  ],
+  "week_start": "2026-03-04"
+}

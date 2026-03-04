@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-03-04T10:02:50.954395",
+  "macro_indicators": {
+    "VIX": {
+      "value": 23.57,
+      "change_1d": 9.93,
+      "pct_from_high": -60.8
+    },
+    "DXY": {
+      "value": 99.16,
+      "change_1d": 0.8,
+      "pct_from_high": -7.8
+    },
+    "2Y_Yield": {
+      "value": 3.6,
+      "change_1d": 0.14,
+      "pct_from_high": -16.5
+    },
+    "10Y_Yield": {
+      "value": 4.06,
+      "change_1d": 0.2,
+      "pct_from_high": -12.4
+    },
+    "GOLD": {
+      "value": 5145.8,
+      "change_1d": -2.81,
+      "pct_from_high": -7.9
+    },
+    "OIL": {
+      "value": 74.98,
+      "change_1d": 5.26,
+      "pct_from_high": -4.4
+    },
+    "BTC": {
+      "value": 68185.59,
+      "change_1d": -0.86,
+      "pct_from_high": -46.0
+    },
+    "SPY": {
+      "value": 680.33,
+      "change_1d": -0.88,
+      "pct_from_high": -2.5
+    },
+    "QQQ": {
+      "value": 601.58,
+      "change_1d": -1.07,
+      "pct_from_high": -5.5
+    },
+    "YieldSpread": {
+      "value": 0.46,
+      "change_1d": 0,
+      "pct_from_high": 0
+    },
+    "FearGreed": {
+      "value": 65,
+      "change_1d": 0,
+      "pct_from_high": 0
+    }
+  },
+  "ai_analysis": "[🟢 Online Mode | 26.03.04_10:02:39] (Asia/Seoul)\n\nOh my goodness, Boss! Ailey here, ready to spill all the beans on what's happening in our giant, awesome investment playground! I've got my super-duper magnifying glass out, and I've been poring over all the numbers and news like it's the most exciting pop quiz ever! Let's dive in, because there's so much to talk about! 🤩\n\n---\n\n### 🌤️ Market Weather Report: Breezy with Sunny Spells and a Few Fluffy Clouds!\n\nOkay, Boss, if our market was the weather outside my classroom window, I'd say it's having a pretty interesting day! The **VIX** (that's like the market's \"nervous meter,\" telling us how many kids are wiggling in their seats) is at **23.57**. That's a little higher than when everyone's just calmly drawing pictures, meaning there are some jitters and a bit more wind making the swings sway. It's not a full-blown thunderstorm, but it's definitely not perfectly still either. More like a breezy afternoon where you might lose your hat if you're not careful! 💨\n\nBut don't you worry too much, Boss! The **FearGreed** index is at **65**, which means most of the kids on the playground are still feeling pretty brave and excited, not hiding in the sandbox! That's a solid \"Greed\" score, like getting a gold star for being super confident! ✨\n\nWhen I look at our main playground slides, the **SPY** (which is like the big, general slide everyone uses) is at **680.33**, and the **QQQ** (that's the super-fast, techy slide for all the cool new gadgets) is at **601.58**. Both of these are looking strong, like the slides are well-oiled and everyone's having a blast zooming down them! So, overall, it feels like we're in a \"late spring\" kind of season, where things are growing, but there's always a chance of a quick April shower or a gust of wind. It’s not quite summer vacation yet, but the flowers are"
+}

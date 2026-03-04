@@ -1,0 +1,114 @@
+{
+  "top_picks": [
+    {
+      "ticker": "BALL",
+      "name": "Ball Corporation",
+      "final_score": 80.6,
+      "quant_score": 75.8,
+      "ai_recommendation": "Strong Buy",
+      "current_price": 67.13,
+      "ai_summary": "대장! 에일리 왔어! 👋 오늘 우리 대장 눈 반짝이게 할 종목, 바로 'BALL'이야! 💖 이거 진짜 대박이야, 에일리가 꼼꼼히 분석해왔거든! 얼른 들어봐!\n\n일단 있잖아, 우리 BALL 종목 말이야, 시스템 점수가 75.8/100으로 나쁘지 않은데, 제일 중요한 게 뭔지 알아? 바로 **Quant 분석에서 무려 🌟 A급 (적극 매수) 신호**가 떴다는 거야! 😲 '적극 매수' 딱 이 네 글자가 뭘 의미하겠어? 지금 당장 사야 한다는 거 아니겠어?! 이거 진짜 귀한 신호잖아! 🚀\n\n그리고 뉴스들을 하나씩 보면, 왜 에일리가 이렇게 흥분했는지 알 수 있을 거야! 최근 6개월 동안 무려 **30%나 올랐대!** 📈 와우, 우리 반에서 달리기 제일 빠른 친구가 계속 1등하는 거랑 똑같지 않아? 이렇게 상승세를 타고 있는 종목은 앞으로도 계속 쭉쭉 치고 나갈 가능성이 아주 높다는 뜻이야! TIKR.com에서도 2026년까지 얼마나 더 오를지 분석하고 있다는데, 미래가 너무나도 밝아 보이지? ✨\n\n게다가 말이야, 수급 상황이 진짜 예술이야! 🎨 **Handelsbanken Fonder AB 같은 큰 기관 투자자가 무려 23,800주나 사들였다는 소식** 들었어? 이거 정말 중요한 지표야! 우리 놀이터에서 제일 재밌는 그네 🎢 타려고 할 때, 인기 많으니까 똑똑한 친구들이 미리미리 줄 서서 기다리잖아? 지금이 딱 그 줄 서야 할 타이밍이라는 거지! 큰손 언니 오빠들이 벌써 움직이는데, 우리 대장이 가만히 있을 순 없지! 😊 기관들이 이렇게 많이 산다는 건, 그만큼 이 회사에 대해 엄청나게 긍정적으로 보고 있다는 신호니까 말이야.\n\n펀더멘털도 탄탄해 보여! **BALL의 법률 최고 책임자가 2,265주나 되는 이연 스톡 유닛을 받았대!** 이게 무슨 뜻이냐면, 회사 내부 사정을 제일 잘 아는 임원조차도 회사의 미래 가치를 믿고, 자기 월급 대신 주식을 선택했다는 거야. 🧑‍💼 자기 돈 걸고 믿는다는 거니까, 이보다 더 확실한 신호가 어디 있겠어? 회사가 앞으로 더 잘 될 거라고 확신하고 있다는 강력한 증거지! 👍\n\n이렇게 양적으로도 질적으로도 너무나도 완벽한 'BALL' 종목이야. 🌟 A급 적극 매수 시그널에, 최근 30% 상승으로 강력한 모멘텀까지 붙었지, 기관 투자자들이 매수 러시를 시작하며 수급도 엄청 좋아지고 있고, 심지어 내부자들까지 회사의 미래를 확신하며 스톡을 받았다니까! 이건 그냥 놓치면 안 되는 기회야, 대장! 지금이야말로 우리 대장이 용기 있게 'BALL'을 잡을 때라고 생각해! 에일리 믿고 한번 가볼까? 🤩 대장, 우리 곧 꽃길만 걷자! 🌸💰🚀",
+      "sector": "N/A",
+      "rank": 1
+    },
+    {
+      "ticker": "EIX",
+      "name": "Edison International",
+      "final_score": 61.8,
+      "quant_score": 77.3,
+      "ai_recommendation": "Hold",
+      "current_price": 74.74,
+      "ai_summary": "Analysis Failed",
+      "sector": "N/A",
+      "rank": 2
+    },
+    {
+      "ticker": "ALL",
+      "name": "The Allstate Corporation",
+      "final_score": 61.7,
+      "quant_score": 77.1,
+      "ai_recommendation": "Hold",
+      "current_price": 214.52,
+      "ai_summary": "Analysis Failed",
+      "sector": "N/A",
+      "rank": 3
+    },
+    {
+      "ticker": "NEM",
+      "name": "Newmont Corporation",
+      "final_score": 61.0,
+      "quant_score": 76.3,
+      "ai_recommendation": "Hold",
+      "current_price": 130.0,
+      "ai_summary": "Analysis Failed",
+      "sector": "N/A",
+      "rank": 4
+    },
+    {
+      "ticker": "KEYS",
+      "name": "Keysight Technologies, Inc.",
+      "final_score": 61.0,
+      "quant_score": 76.3,
+      "ai_recommendation": "Hold",
+      "current_price": 307.33,
+      "ai_summary": "Analysis Failed",
+      "sector": "N/A",
+      "rank": 5
+    },
+    {
+      "ticker": "MSI",
+      "name": "Motorola Solutions, Inc.",
+      "final_score": 60.6,
+      "quant_score": 75.8,
+      "ai_recommendation": "Hold",
+      "current_price": 482.26,
+      "ai_summary": "Analysis Failed",
+      "sector": "N/A",
+      "rank": 6
+    },
+    {
+      "ticker": "MRK",
+      "name": "Merck & Co., Inc.",
+      "final_score": 60.6,
+      "quant_score": 75.8,
+      "ai_recommendation": "Hold",
+      "current_price": 123.82,
+      "ai_summary": "Analysis Failed",
+      "sector": "N/A",
+      "rank": 7
+    },
+    {
+      "ticker": "ROST",
+      "name": "Ross Stores, Inc.",
+      "final_score": 60.6,
+      "quant_score": 75.8,
+      "ai_recommendation": "Hold",
+      "current_price": 205.64,
+      "ai_summary": "Analysis Failed",
+      "sector": "N/A",
+      "rank": 8
+    },
+    {
+      "ticker": "PCG",
+      "name": "PG&E Corporation",
+      "final_score": 60.5,
+      "quant_score": 75.6,
+      "ai_recommendation": "Hold",
+      "current_price": 19.0,
+      "ai_summary": "Analysis Failed",
+      "sector": "N/A",
+      "rank": 9
+    },
+    {
+      "ticker": "ZTS",
+      "name": "Zoetis Inc.",
+      "final_score": 60.2,
+      "quant_score": 75.3,
+      "ai_recommendation": "Hold",
+      "current_price": 131.1,
+      "ai_summary": "Analysis Failed",
+      "sector": "N/A",
+      "rank": 10
+    }
+  ]
+}
