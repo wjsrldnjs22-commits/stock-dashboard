@@ -773,155 +773,103 @@ def get_us_portfolio_data():
 
 @app.route('/api/us/smart-money')
 def get_us_smart_money():
-    """Get Smart Money Picks with performance tracking"""
+    """Get Smart Money Picks with performance tracking (Cached via DB)"""
     try:
+        import math
         import json
         
-        # Try to load tracked picks with performance
-        current_file = os.path.join('.', 'smart_money_current.json')
+        # 1. DB에서 가장 최근 날짜의 캐시된 데이터 조회
+        from daily_db import get_conn, get_today_kst
+        picks_with_perf = []
+        last_updated = ""
         
-        if os.path.exists(current_file):
-            with open(current_file, 'r', encoding='utf-8') as f:
-                snapshot = json.load(f)
+        if DAILY_DB_ENABLED:
+            with get_conn() as conn:
+                latest = conn.execute("SELECT MAX(date) FROM smart_money_daily").fetchone()[0]
+                if latest:
+                    rows = conn.execute("SELECT * FROM smart_money_daily WHERE date = ? ORDER BY score DESC", (latest,)).fetchall()
+                    for r in rows:
+                        d = dict(r)
+                        picks_with_perf.append({
+                            'ticker': d.get('ticker'),
+                            'name': d.get('name'),
+                            'sector': d.get('sector'),
+                            'final_score': d.get('score'),
+                            'composite_score': d.get('score'),
+                            'grade': d.get('grade'),
+                            'current_price': d.get('price'),
+                            'price_at_rec': d.get('price'),
+                            'change_since_rec': d.get('price_change_1d'),
+                            'volume_stage': 'N/A',
+                            'smart_money_flow': d.get('smart_money_flow', 'N/A'),
+                            'target_upside': 0,
+                        })
+                    last_updated = latest
+        
+        # 2. DB가 비어있으면 백엔드 CSV 파일 매핑 (yf_download 생략)
+        if not picks_with_perf:
+            csv_path = os.path.join('.', 'smart_money_picks_v2.csv')
+            if not os.path.exists(csv_path):
+                csv_path = os.path.join('.', 'smart_money_picks.csv')
+                
+            if not os.path.exists(csv_path):
+                return jsonify({
+                    'status': 'Generating',
+                    'message': '캐시 생성 중...',
+                    'last_updated': last_updated,
+                    'top_picks': [],
+                    'summary': {'total_analyzed': 0, 'avg_score': 0}
+                }), 200
+                
+            df = pd.read_csv(csv_path)
+            last_updated = "CSV Fallback"
             
-            # Get current prices for performance calculation
-            tickers = [p['ticker'] for p in snapshot['picks']]
-            current_prices = {}
-            
-            # Fetch prices individually for better reliability
-            for ticker in tickers:
-                try:
-                    stock = yf.Ticker(ticker)
-                    hist = stock.history(period='5d')
-                    if not hist.empty:
-                        current_prices[ticker] = round(float(hist['Close'].dropna().iloc[-1]), 2)
-                except Exception as e:
-                    print(f"Error fetching price for {ticker}: {e}")
-            
-            # Add performance data to picks
-            picks_with_perf = []
-            for pick in snapshot['picks']:
-                ticker = pick['ticker']
-                price_at_rec = pick.get('price_at_analysis', 0) or 0
-                current_price = current_prices.get(ticker, price_at_rec) or price_at_rec or 0
+            # Top 30개만 잘라서 전송 (데이터 폭주 방지)
+            limit = int(request.args.get('limit', 30))
+            if limit > 0:
+                df = df.head(limit)
                 
-                # Handle NaN values
-                import math
-                if math.isnan(price_at_rec) if isinstance(price_at_rec, float) else False:
-                    price_at_rec = 0
-                if math.isnan(current_price) if isinstance(current_price, float) else False:
-                    current_price = price_at_rec
+            for _, row in df.iterrows():
+                ticker = row['ticker']
+                rec_price = row.get('current_price', 0) if 'current_price' in row else 0
                 
-                if price_at_rec > 0:
-                    change_pct = ((current_price / price_at_rec) - 1) * 100
-                else:
-                    change_pct = 0
-                
-                # Ensure no NaN in output
-                if math.isnan(change_pct) if isinstance(change_pct, float) else False:
-                    change_pct = 0
-                
+                # 안전한 get 처리 (KeyError 방지)
+                def _safe_get(r, col, default=0):
+                    return r[col] if col in r and pd.notna(r[col]) else default
+                    
                 picks_with_perf.append({
-                    **pick,
+                    'ticker': ticker,
+                    'name': _safe_get(row, 'name', ticker),
                     'sector': get_sector(ticker),
-                    'current_price': round(current_price, 2),
-                    'price_at_rec': round(price_at_rec, 2),
-                    'change_since_rec': round(change_pct, 2)
+                    'final_score': _safe_get(row, 'composite_score', 0),
+                    'composite_score': _safe_get(row, 'composite_score', 0),
+                    'grade': _safe_get(row, 'grade', 'N/A'),
+                    'target_upside': _safe_get(row, 'target_upside', 0),
+                    'target_buy_price': _safe_get(row, 'target_buy_price', 0),
+                    'target_sell_price': _safe_get(row, 'target_sell_price', 0),
+                    'ai_recommendation': _safe_get(row, 'ai_recommendation', '분석 중'),
+                    'current_price': round(rec_price, 2) if rec_price else 0,
+                    'price_at_rec': round(rec_price, 2) if rec_price else 0,
+                    'change_since_rec': 0,
+                    'category': _safe_get(row, 'category', 'N/A'),
+                    'volume_stage': _safe_get(row, 'volume_stage', 'N/A'),
+                    'insider_score': _safe_get(row, 'insider_score', 0),
+                    'avg_surprise': _safe_get(row, 'avg_surprise', 0),
                 })
-            
-            return jsonify({
-                'analysis_date': snapshot.get('analysis_date', ''),
-                'analysis_timestamp': snapshot.get('analysis_timestamp', ''),
-                'top_picks': picks_with_perf,
-                'summary': {
-                    'total_analyzed': len(picks_with_perf),
-                    'avg_score': round(sum(p['final_score'] for p in picks_with_perf) / len(picks_with_perf), 1) if picks_with_perf else 0
-                }
-            })
-        
-        # Fallback to CSV if no tracked data
-        csv_path = os.path.join('.', 'smart_money_picks_v2.csv')
-        if not os.path.exists(csv_path):
-            csv_path = os.path.join('.', 'smart_money_picks.csv')
-        
-        if not os.path.exists(csv_path):
-            return jsonify({'error': 'Smart money picks not found. Run screener first.'}), 404
-        
-        df = pd.read_csv(csv_path)
-        
-        # Fetch real-time prices for CSV data
-        tickers = df['ticker'].tolist()
-        current_prices = {}
-        
-        try:
-            import math
-            price_data = yf.download(tickers, period='1d', progress=False)
-            if not price_data.empty:
-                closes = price_data['Close']
-                for ticker in tickers:
-                    try:
-                        if isinstance(closes, pd.DataFrame) and ticker in closes.columns:
-                            val = closes[ticker].iloc[-1]
-                        elif isinstance(closes, pd.Series):
-                            val = closes.iloc[-1]
-                        else:
-                            val = 0
-                        current_prices[ticker] = round(float(val), 2) if not (isinstance(val, float) and math.isnan(val)) else 0
-                    except:
-                        current_prices[ticker] = 0
-        except Exception as e:
-            print(f"Error fetching US real-time prices: {e}")
-        
-        # Load AI summaries
-        ai_summaries = {}
-        try:
-            summary_path = os.path.join('.', 'ai_summaries.json')
-            if os.path.exists(summary_path):
-                with open(summary_path, 'r', encoding='utf-8') as f:
-                    ai_summaries = json.load(f)
-        except: pass
-        
-        top_picks = []
-        for _, row in df.iterrows():
-            ticker = row['ticker']
-            rec_price = row.get('current_price', 0) or 0
-            cur_price = current_prices.get(ticker, rec_price) or rec_price
-            
-            if rec_price > 0:
-                change_pct = ((cur_price / rec_price) - 1) * 100
-            else:
-                change_pct = 0
-            
-            top_picks.append({
-                'ticker': ticker,
-                'name': row.get('name', ticker),
-                'sector': get_sector(ticker),
-                'final_score': row.get('composite_score', 0),
-                'composite_score': row.get('composite_score', 0),
-                'grade': row.get('grade', 'N/A'),
-                'target_upside': row.get('upside_pct', row.get('target_upside', 0)),
-                'target_buy_price': row.get('target_buy_price', 0),    # 새로 추가된 컬럼
-                'target_sell_price': row.get('target_sell_price', 0),  # 새로 추가된 컬럼
-                'ai_recommendation': row.get('ai_recommendation', '분석 중'),
-                'current_price': round(cur_price, 2),
-                'price_at_rec': round(rec_price, 2),
-                'change_since_rec': round(change_pct, 2),
-                'category': row.get('category', 'N/A'),
-                'volume_stage': row.get('volume_stage', 'N/A'),
-                'insider_score': row.get('insider_score', 0),
-                'avg_surprise': row.get('avg_surprise', 0),
-                'ai_summary': ai_summaries.get(ticker, {}).get('summary', 'Analysis Failed')
-            })
-        
+
+        # 모두 응답 반환
         return jsonify({
-            'top_picks': top_picks,
+            'status': 'OK',
+            'last_updated': last_updated,
+            'top_picks': picks_with_perf,
             'summary': {
-                'total_analyzed': len(df),
-                'avg_score': round(df['smart_money_score'].mean() if 'smart_money_score' in df.columns else 0, 1)
+                'total_analyzed': len(picks_with_perf),
+                'avg_score': round(sum(p['final_score'] for p in picks_with_perf) / max(1, len(picks_with_perf)), 1)
             }
         })
         
     except Exception as e:
+        import traceback; traceback.print_exc()
         print(f"Error getting smart money picks: {e}")
         return jsonify({'error': str(e)}), 500
 
@@ -2331,7 +2279,7 @@ def get_risk_analysis():
                 '기타': int(portfolio_df['grade'].str.contains('D급|F급', na=False).sum()),
             }
             avg_score    = round(float(portfolio_df['composite_score'].mean()), 1)
-            avg_upside   = round(float(portfolio_df['target_upside'].mean()), 1)
+            avg_upside   = round(float(portfolio_df['target_upside'].mean()), 1) if 'target_upside' in portfolio_df.columns else 0
         else:
             sector_pct = {}
             score_dist = {}
@@ -2424,16 +2372,20 @@ def get_risk_analysis():
         if not picks_df.empty and 'portfolio_df' in locals() and not portfolio_df.empty:
             top10 = portfolio_df.nlargest(50, 'composite_score').head(15)
             for _, row in top10.iterrows():
+                def _safe_get(r, col, default=0):
+                    val = r.get(col, default)
+                    return float(val) if pd.notna(val) else default
+                    
                 risk_stocks.append({
                     'ticker':    row.get('ticker', ''),
                     'name':      row.get('name', ''),
                     'sector':    row.get('sector', ''),
                     'grade':     row.get('grade', ''),
-                    'score':     float(row.get('composite_score', 0) or 0),
-                    'sd_score':  float(row.get('sd_score', 50) or 50),
-                    'inst_score': float(row.get('inst_score', 50) or 50),
-                    'upside':    float(row.get('target_upside', 0) or 0),
-                    'price':     float(row.get('current_price', 0) or 0),
+                    'score':     _safe_get(row, 'composite_score', 0),
+                    'sd_score':  _safe_get(row, 'sd_score', 50),
+                    'inst_score': _safe_get(row, 'inst_score', 50),
+                    'upside':    _safe_get(row, 'target_upside', 0),
+                    'price':     _safe_get(row, 'current_price', 0),
                 })
 
         return jsonify({
