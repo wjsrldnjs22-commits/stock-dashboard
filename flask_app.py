@@ -779,11 +779,11 @@ def get_us_smart_money():
         import json
         
         # 1. DB에서 가장 최근 날짜의 캐시된 데이터 조회
-        from daily_db import get_conn, get_today_kst
         picks_with_perf = []
         last_updated = ""
         
         if DAILY_DB_ENABLED:
+            from daily_db import get_conn, get_today_kst
             with get_conn() as conn:
                 latest = conn.execute("SELECT MAX(date) FROM smart_money_daily").fetchone()[0]
                 if latest:
