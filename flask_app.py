@@ -11,6 +11,29 @@ from flask_cors import CORS
 import traceback
 from datetime import datetime
 
+# ── 일일 데이터 DB ──────────────────────────────────
+try:
+    from daily_db import (
+        init_db, get_db_stats,
+        save_portfolio_snapshot, save_ailey_analysis,
+        get_portfolio_history, get_smart_money_history,
+        get_market_history, get_ailey_history,
+    )
+    DAILY_DB_ENABLED = True
+except ImportError:
+    DAILY_DB_ENABLED = False
+    print("⚠️ daily_db 없음 — DB 기능 비활성화")
+
+# ── APScheduler ─────────────────────────────────────
+try:
+    from apscheduler.schedulers.background import BackgroundScheduler
+    from apscheduler.triggers.cron import CronTrigger
+    from zoneinfo import ZoneInfo
+    SCHEDULER_ENABLED = True
+except ImportError:
+    SCHEDULER_ENABLED = False
+    print("⚠️ apscheduler 없음 — pip install apscheduler 권장")
+
 app = Flask(__name__)
 CORS(app)
 
@@ -2768,7 +2791,162 @@ def get_s_grade_picks():
         return jsonify({'picks': [], 'error': str(e)}), 500
 
 
+# ─────────────────────────────────────────────────────────────
+# 히스토리 조회 API (프론트엔드용)
+# ─────────────────────────────────────────────────────────────
+
+@app.route('/api/history/portfolio')
+def api_portfolio_history():
+    """포트폴리오 일별 수익률 히스토리"""
+    if not DAILY_DB_ENABLED:
+        return jsonify({'error': 'DB disabled'}), 503
+    try:
+        ticker = request.args.get('ticker')
+        days   = int(request.args.get('days', 30))
+        data   = get_portfolio_history(ticker=ticker, days=days)
+        return jsonify({'data': data, 'count': len(data)})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/history/smart-money')
+def api_smart_money_history():
+    """Smart Money 종목 히스토리"""
+    if not DAILY_DB_ENABLED:
+        return jsonify({'error': 'DB disabled'}), 503
+    try:
+        ticker = request.args.get('ticker')
+        days   = int(request.args.get('days', 30))
+        data   = get_smart_money_history(ticker=ticker, days=days)
+        return jsonify({'data': data, 'count': len(data)})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/history/market')
+def api_market_history():
+    """시장 지수 히스토리"""
+    if not DAILY_DB_ENABLED:
+        return jsonify({'error': 'DB disabled'}), 503
+    try:
+        symbol = request.args.get('symbol')
+        days   = int(request.args.get('days', 90))
+        data   = get_market_history(symbol=symbol, days=days)
+        return jsonify({'data': data, 'count': len(data)})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/history/ailey')
+def api_ailey_history():
+    """Ailey 분석 히스토리"""
+    if not DAILY_DB_ENABLED:
+        return jsonify({'error': 'DB disabled'}), 503
+    try:
+        ticker        = request.args.get('ticker')
+        analysis_type = request.args.get('type')
+        days          = int(request.args.get('days', 30))
+        data          = get_ailey_history(ticker=ticker, analysis_type=analysis_type, days=days)
+        return jsonify({'data': data, 'count': len(data)})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/history/stats')
+def api_history_stats():
+    """DB 저장 현황 통계"""
+    if not DAILY_DB_ENABLED:
+        return jsonify({'error': 'DB disabled'}), 503
+    try:
+        return jsonify(get_db_stats())
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/history/portfolio/save', methods=['POST'])
+def api_save_portfolio_snapshot():
+    """
+    프론트엔드에서 포트폴리오 스냅샷 저장 요청
+    Body: {holdings: [{ticker, name, quantity, avg_price, current_price, ...}]}
+    """
+    if not DAILY_DB_ENABLED:
+        return jsonify({'error': 'DB disabled'}), 503
+    try:
+        holdings = request.json.get('holdings', [])
+        if not holdings:
+            return jsonify({'error': 'holdings empty'}), 400
+        save_portfolio_snapshot(holdings)
+        return jsonify({'ok': True, 'saved': len(holdings)})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/health')
+def health_check():
+    """배포 후 상태 확인용 엔드포인트"""
+    status = {
+        'status': 'ok',
+        'message': 'Healthy',
+        'db_path': os.getenv('DB_PATH', 'default (local)'),
+        'db_connected': False
+    }
+    
+    if DAILY_DB_ENABLED:
+        try:
+            from daily_db import get_conn
+            with get_conn() as conn:
+                tables = conn.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()
+                table_names = [t[0] for t in tables]
+                
+                required_tables = ['portfolio_daily', 'smart_money_daily', 'market_indices_daily', 'ailey_analysis_daily']
+                missing = [t for t in required_tables if t not in table_names]
+                
+                if missing:
+                    status['status'] = 'error'
+                    status['message'] = f'Missing tables: {missing}'
+                    return jsonify(status), 500
+                    
+                status['db_connected'] = True
+                status['tables'] = table_names
+        except Exception as e:
+            status['status'] = 'error'
+            status['message'] = f'DB Connection Error: {str(e)}'
+            return jsonify(status), 500
+            
+    return jsonify(status), 200
+
+
+# ─────────────────────────────────────────────────────────────
+# 앱 시작 시 DB 초기화 + 스케줄러 등록
+# ─────────────────────────────────────────────────────────────
+def _start_scheduler():
+    if not SCHEDULER_ENABLED or not DAILY_DB_ENABLED:
+        print("⚠️ 스케줄러 또는 DB 비활성화 상태")
+        return
+    try:
+        from daily_collector import run_daily_collection
+        scheduler = BackgroundScheduler(timezone=ZoneInfo("Asia/Seoul"))
+        # 매일 KST 00:05 실행 (장 마감 후 데이터 안정화)
+        scheduler.add_job(
+            func=run_daily_collection,
+            trigger=CronTrigger(hour=0, minute=5, timezone=ZoneInfo("Asia/Seoul")),
+            id="daily_collect",
+            replace_existing=True,
+        )
+        scheduler.start()
+        print("⏰ 스케줄러 시작: 매일 KST 00:05 자동 수집")
+    except Exception as e:
+        print(f"❌ 스케줄러 시작 실패: {e}")
+
+
 if __name__ == '__main__':
+    # DB 초기화
+    if DAILY_DB_ENABLED:
+        init_db()
+
+    # 백그라운드 스케줄러 시작
+    _start_scheduler()
+
     port = int(os.environ.get('PORT', 5001))
     debug = os.environ.get('FLASK_ENV', 'production') != 'production'
     print(f'Flask Server Starting on port {port} (debug={debug})...')
